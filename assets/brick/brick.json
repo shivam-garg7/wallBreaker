@@ -1,0 +1,655 @@
+{
+	"frames": {
+		"tileBlack": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileBlackBreak": {
+			"frame": {
+				"x": 211,
+				"y": 1,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileBlackBreakSpecial": {
+			"frame": {
+				"x": 321,
+				"y": 1,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileBlackSpecial": {
+			"frame": {
+				"x": 431,
+				"y": 1,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileBlue": {
+			"frame": {
+				"x": 1,
+				"y": 111,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileBlueBreak": {
+			"frame": {
+				"x": 641,
+				"y": 1,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileBlueBreakSpecial": {
+			"frame": {
+				"x": 211,
+				"y": 111,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileBlueSpecial": {
+			"frame": {
+				"x": 321,
+				"y": 111,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileGreen": {
+			"frame": {
+				"x": 531,
+				"y": 111,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileGreenBreak": {
+			"frame": {
+				"x": 1,
+				"y": 221,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileGreenBreakSpecial": {
+			"frame": {
+				"x": 111,
+				"y": 221,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileGreenSpecial": {
+			"frame": {
+				"x": 221,
+				"y": 221,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileGrey": {
+			"frame": {
+				"x": 431,
+				"y": 221,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileGreyBreak": {
+			"frame": {
+				"x": 641,
+				"y": 221,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileGreyBreakSpecial": {
+			"frame": {
+				"x": 1,
+				"y": 331,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileGreySpecial": {
+			"frame": {
+				"x": 111,
+				"y": 331,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileOrange": {
+			"frame": {
+				"x": 321,
+				"y": 331,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileOrangeBreak": {
+			"frame": {
+				"x": 531,
+				"y": 331,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileOrangeBreakSpecial": {
+			"frame": {
+				"x": 641,
+				"y": 331,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileOrangeSpecial": {
+			"frame": {
+				"x": 1,
+				"y": 441,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tilePink": {
+			"frame": {
+				"x": 211,
+				"y": 441,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tilePinkBreak": {
+			"frame": {
+				"x": 421,
+				"y": 441,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tilePinkBreakSpecial": {
+			"frame": {
+				"x": 531,
+				"y": 441,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tilePinkSpecial": {
+			"frame": {
+				"x": 1,
+				"y": 551,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileRed": {
+			"frame": {
+				"x": 211,
+				"y": 551,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileRedBreak": {
+			"frame": {
+				"x": 641,
+				"y": 441,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileRedBreakSpecial": {
+			"frame": {
+				"x": 421,
+				"y": 551,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileRedSpecial": {
+			"frame": {
+				"x": 531,
+				"y": 551,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileYellow": {
+			"frame": {
+				"x": 751,
+				"y": 1,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		},
+		"tileYellowBreak": {
+			"frame": {
+				"x": 741,
+				"y": 111,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileYellowBreakSpecial": {
+			"frame": {
+				"x": 851,
+				"y": 111,
+				"w": 108,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 108,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 108,
+				"h": 108
+			}
+		},
+		"tileYellowSpecial": {
+			"frame": {
+				"x": 751,
+				"y": 221,
+				"w": 208,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 208,
+				"h": 108
+			},
+			"sourceSize": {
+				"w": 208,
+				"h": 108
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "brick.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 960,
+			"h": 660
+		},
+		"scale": "1"
+	}
+}

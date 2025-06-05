@@ -1,0 +1,36 @@
+{
+    "GameScreen": {
+        "files": [
+            {
+                "type": "atlas",
+                "key": "brick",
+                "textureURL": "assets/brick/brick.png",
+                "atlasURL": "assets/brick/brick.json"
+            },
+            {
+                "type": "atlas",
+                "key": "paddle",
+                "textureURL": "assets/paddles/paddle.png",
+                "atlasURL": "assets/paddles/paddle.json"
+            },
+            {
+                "type": "atlas",
+                "key": "ball",
+                "textureURL": "assets/balls/ball.png",
+                "atlasURL": "assets/balls/ball.json"
+            },
+            {
+                "type": "image",
+                "key": "tileGreenBreak",
+                "url": "assets/tileGreen_03.png"
+            }
+        ]
+    },
+    "meta": {
+        "generated": "1401380327373",
+        "app": "Phaser 3 Asset Packer",
+        "url": "https://phaser.io",
+        "version": "1.0",
+        "copyright": "Photon Storm Ltd. 2018"
+    }
+}
