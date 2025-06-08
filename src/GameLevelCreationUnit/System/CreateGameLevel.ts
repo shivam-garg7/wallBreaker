@@ -8,6 +8,7 @@ import { BallCreation } from "../Component/BallCreation";
 import { BorderLineCreation } from "../Component/BorderLineCreation";
 import { BallAndPaddleContainerCreation } from "../Component/BallAndPaddleContainer";
 import { CreateBrokenBrick } from "../Component/CreateBrokenBrick";
+import { BackGroundCreation } from "../Component/BackGroundCreation";
 
 export class CreateGameLevel {
     private readonly gameState: GameStateManager;
@@ -17,6 +18,7 @@ export class CreateGameLevel {
     private readonly borderLineCreation: BorderLineCreation;
     private readonly ballAndPaddleContainerCreation: BallAndPaddleContainerCreation;
     private readonly createBrokenBrick: CreateBrokenBrick;
+    private readonly backGroundCreation: BackGroundCreation;
     private levelCreationData: any[] = [];
     /**
      *
@@ -29,6 +31,7 @@ export class CreateGameLevel {
         this.borderLineCreation = BorderLineCreation.getInstance();
         this.ballAndPaddleContainerCreation = BallAndPaddleContainerCreation.getInstance();
         this.createBrokenBrick = CreateBrokenBrick.getInstance();
+        this.backGroundCreation = BackGroundCreation.getInstance();
         this.levelCreationData = [PatternLevelOne, PatternLevelSecond, PatternLevelThird, PatternLevelFourth, PatternLevelFifth, PatternLevelSixth, PatternLevelSeventh];
     }
     protected static createWallPattern: CreateGameLevel;
@@ -53,14 +56,17 @@ export class CreateGameLevel {
     public updateBall(scene: Scene): any {
         return this.ballCreation.updateBall(scene);
     }
+    public createBackground(scene: Scene,size:number[]): any {
+        return this.backGroundCreation.createBackGround(scene,size);
+    }
     public startBorderLineCreation(scene: Scene): any {
         return this.borderLineCreation.createBorderLineCreation(scene);
     }
     public addBallAndPaddleToContainer(scene: Scene, ball: Phaser.Types.Physics.Arcade.ImageWithDynamicBody, paddle: Phaser.Types.Physics.Arcade.ImageWithDynamicBody): any {
         return this.ballAndPaddleContainerCreation.createBallAndPaddleContainer(scene, ball, paddle)
     }
-    public generateBrokenBricks(brick: Phaser.Types.Physics.Arcade.GameObjectWithBody | Phaser.Physics.Arcade.Body | Phaser.Physics.Arcade.StaticBody | Phaser.Tilemaps.Tile, scene: Scene):Phaser.Types.Physics.Arcade.ImageWithDynamicBody[]{
-        return this.createBrokenBrick.createBrokenBricks(brick,scene);
+    public generateBrokenBricks(brick: Phaser.Types.Physics.Arcade.GameObjectWithBody | Phaser.Physics.Arcade.Body | Phaser.Physics.Arcade.StaticBody | Phaser.Tilemaps.Tile, scene: Scene): Phaser.Types.Physics.Arcade.ImageWithDynamicBody[] {
+        return this.createBrokenBrick.createBrokenBricks(brick, scene);
     }
 
     private getlevelCreationData(): any {

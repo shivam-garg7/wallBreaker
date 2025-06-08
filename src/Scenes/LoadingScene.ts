@@ -1,14 +1,15 @@
-import { Scene } from "phaser";
+
 import { LoadConstants, SceneName } from "../GameConstants/SceneConstants";
+import { ExtendedScene } from "../utility/ExtendedScene";
 
 
-export class LoadingScene extends Scene {
+export class LoadingScene extends ExtendedScene {
   protected rec?: Phaser.GameObjects.Rectangle;
   /**
    *
    */
   constructor() {
-    super(SceneName.LOADING_SCENE);
+    super({ key: SceneName.LOADING_SCENE });
   }
   init(): void {
     this.add.text(this.renderer.width / 2 - 20, 300, "Loading....", {})
@@ -32,5 +33,6 @@ export class LoadingScene extends Scene {
   create(): void {
     this.scene.start(SceneName.GAME_SCENE);
     this.scene.remove();
+     this.scale.on('resize', this.onResize, this);
   }
 }

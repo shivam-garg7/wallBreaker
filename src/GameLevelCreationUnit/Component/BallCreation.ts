@@ -1,10 +1,18 @@
 import { Scene } from "phaser";
 import { LevelCreationConstants } from "../../GameConstants/LevelCreationContants";
 import { BallAssetsData } from "../entity/BuildingMaterialConfig";
+import { GameStateManager } from "../../StateManger/GameStateManager";
 
 export class BallCreation {
 
     protected static ballCreation: BallCreation;
+    protected gameStateMachine: GameStateManager;
+    /**
+     *
+     */
+    constructor() {
+        this.gameStateMachine = GameStateManager.getInstance();
+    }
     public static getInstance(): BallCreation {
         if (!BallCreation.ballCreation) {
             BallCreation.ballCreation = new BallCreation();
@@ -15,6 +23,7 @@ export class BallCreation {
     public createBall(scene: Scene): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
         const ball = scene.physics.add.sprite(0, 0, LevelCreationConstants.BaLL_ATLAS_KEY, this.getBallFrameKey(0));
         this.setBallProperties(ball);
+        this.gameStateMachine.setCreatedBall(ball);
         return ball;
     }
     private setBallProperties(ball: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody): void {

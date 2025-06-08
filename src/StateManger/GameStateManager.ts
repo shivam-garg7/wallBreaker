@@ -1,5 +1,6 @@
 import type { ITileRecordConfig } from "../Interface/ITileRecordConfig";
 import { GameConstants } from "../GameConstants/SceneConstants";
+import { IPhysicsBodyData } from "Interface/IPhysicsBodyData";
 
 export class GameStateManager {
     private static instance: GameStateManager;
@@ -7,6 +8,11 @@ export class GameStateManager {
     private _isgameOver: boolean;
     private _currentGameLevel: number;
     private _islevelComplete: boolean;
+    private _paddle!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    private _ball!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    private _paddleBallContainer!: Phaser.GameObjects.Container;
+    private _bottomBorderLine!: Phaser.GameObjects.Line;
+    private _physicsBodyXPosition: IPhysicsBodyData;
     private _tilesRecord: Record<string, ITileRecordConfig>;
 
     /**
@@ -18,6 +24,7 @@ export class GameStateManager {
         this._islevelComplete = false;
         this._currentGameLevel = 1
         this._tilesRecord = {};
+        this._physicsBodyXPosition = { x: undefined, y: undefined, width: undefined, height: undefined };
     }
     public static getInstance(): GameStateManager {
         if (!GameStateManager.instance) {
@@ -65,6 +72,36 @@ export class GameStateManager {
     public removeTileRecord(key: string): void {
         if (key in this._tilesRecord) {
             delete this._tilesRecord[key];
-        }   
+        }
+    }
+    public setCreatedPaddle(value: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody): void {
+        this._paddle = value;
+    }
+    public getGamePaddle(): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
+        return this._paddle;
+    }
+    public setCreatedBall(value: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody): void {
+        this._ball = value;
+    }
+    public getGameBall(): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
+        return this._ball;
+    }
+    public setCreatedBallAndPaddleContainer(value: Phaser.GameObjects.Container): void {
+        this._paddleBallContainer = value;
+    }
+    public getGameBallAndPaddleContainer(): Phaser.GameObjects.Container {
+        return this._paddleBallContainer;
+    }
+    public setCreatedBottomBorderLine(value: Phaser.GameObjects.Line): void {
+        this._bottomBorderLine = value;
+    }
+    public getGameBottomBorderLine(): Phaser.GameObjects.Line {
+        return this._bottomBorderLine;
+    }
+    public setPhysicsBodyXPositionAndWidth(x: number, width: number): void {
+        this._physicsBodyXPosition = { x: x, width: width };
+    }
+    public getGamePhysicsBodyData(): IPhysicsBodyData {
+        return this._physicsBodyXPosition;
     }
 }

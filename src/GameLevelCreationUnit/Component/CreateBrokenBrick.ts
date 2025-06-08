@@ -36,7 +36,7 @@ export class CreateBrokenBrick {
         const velocityY = Phaser.Math.Between(-100, -10);
         const rotation = Phaser.Math.Between(0, 10);
         brokenBrick.x += brokenBrick.width * 0.25 * index;
-        brokenBrick.setOrigin(0, 0).setScale(0.25, 0.25);
+        brokenBrick.setOrigin(0, 0).setScale(0.2, 0.2);
         brokenBrick.setRotation(rotation);
         brokenBrick.setVelocity(velocityX, velocityY);
         brokenBrick.setGravityY(500);

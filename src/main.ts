@@ -1,4 +1,4 @@
-import { GameScene } from "@scenes/GameScene";
+import { GameScene } from "@scenes/GameScene/GameScene";
 import { LoadingScene } from "@scenes/LoadingScene";
 import { Game } from "phaser";
 import '../css/main.css';
@@ -12,7 +12,7 @@ const config: Phaser.Types.Core.GameConfig = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
+      debug: false
     }
   },
   scale: {

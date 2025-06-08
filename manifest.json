@@ -20,9 +20,10 @@
                 "atlasURL": "assets/balls/ball.json"
             },
             {
-                "type": "image",
-                "key": "tileGreenBreak",
-                "url": "assets/tileGreen_03.png"
+                "type": "atlas",
+                "key": "backGround",
+                "textureURL": "assets/backGround/backGround.png",
+                "atlasURL": "assets/backGround/backGround.json"
             }
         ]
     },
