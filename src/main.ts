@@ -1,8 +1,8 @@
 import { GameScene } from "@scenes/GameScene/GameScene";
 import { LoadingScene } from "@scenes/LoadingScene";
-import { Game } from "phaser";
 import '../css/main.css';
-
+import { Game } from "phaser";
+import './lib/phaser';
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 1920,
@@ -19,6 +19,7 @@ const config: Phaser.Types.Core.GameConfig = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
+  parent:"game-container"
 };
 export const game: Game = new Game(config);
 export const originalWidth = 1920;

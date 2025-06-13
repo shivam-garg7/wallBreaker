@@ -31,8 +31,8 @@ export class LoadingScene extends ExtendedScene {
     }
   }
   create(): void {
+    super.create();
     this.scene.start(SceneName.GAME_SCENE);
     this.scene.remove();
-     this.scale.on('resize', this.onResize, this);
   }
 }

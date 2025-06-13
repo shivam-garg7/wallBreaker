@@ -20,11 +20,14 @@ export class BackGroundCreation {
         }
         return BackGroundCreation.backGroundCreation;
     }
-    public createBackGround(scene: Scene,size:number[]): void {
+    public createBackGround(scene: Scene,size:number[]): Phaser.GameObjects.Container {
+        const con : Phaser.GameObjects.Container = scene.add.container(0,0);
         for (const image of this.levelImages[this.gameStateMachine.currentGameLevel - 1].image) {
             const backGround = scene.add.sprite(0, 0, LevelCreationConstants.BACKGROUND_ATLAS_KEY, image);
             backGround.setDisplaySize(size[0],size[1]).setPosition(backGround.displayWidth/2,backGround.displayHeight/2);
+            con.add(backGround);
         }
+        return con;
     }
     public removeBackGround(): void {
         // to do

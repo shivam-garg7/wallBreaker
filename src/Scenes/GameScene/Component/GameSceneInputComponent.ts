@@ -103,7 +103,7 @@ export class GameSceneInputComponent {
     }
     protected onSpaceBarPressUp(): void {
         if (this.gameStateMachine.getGameBallAndPaddleContainer().active) {
-            this.scene.showHideGameStartPlayerMsg(false);
+            // this.scene.showHideGameStartPlayerMsg(false);
             this.gameStateMachine.lifeLoose();
             this.gameStateMachine.getGameBall().enableBody(true);
             this.gameStateMachine.getGameBallAndPaddleContainer().setActive(false);
@@ -116,7 +116,7 @@ export class GameSceneInputComponent {
 
     }
     protected onRestartKeyPressUp(): void {
-        this.scene.showHidegameOverMsg(false);
+        // this.scene.showHidegameOverMsg(false);
         this.scene.clearCurrentWall();
         this.createGameLevel.startLevelCreation(this.scene);
         this.collisionStateManager.onBrickAndBallCollision(this.scene, this.gameStateMachine.getTileRecord(), this.gameStateMachine.getGameBall());
