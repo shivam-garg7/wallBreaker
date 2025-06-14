@@ -43,12 +43,12 @@ export class GameSceneInputComponent {
     protected onLeftKeyPressDown(): void {
         if (this.gameStateMachine.getGameBallAndPaddleContainer().active) {
 
-            (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(-400);
+            (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(-700);
 
         }
         else if (this.gameStateMachine.getGamePaddle().active) {
 
-            this.gameStateMachine.getGamePaddle().setVelocityX(-400)
+            this.gameStateMachine.getGamePaddle().setVelocityX(-700)
         }
     }
     protected onLeftKeyPressUp(): void {
@@ -58,7 +58,7 @@ export class GameSceneInputComponent {
 
                 (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(0);
             } else {
-                (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(400)
+                (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(700)
             }
         }
         else if (this.gameStateMachine.getGamePaddle().active) {
@@ -67,7 +67,7 @@ export class GameSceneInputComponent {
 
                 this.gameStateMachine.getGamePaddle().setVelocityX(0)
             } else {
-                this.gameStateMachine.getGamePaddle().setVelocityX(400)
+                this.gameStateMachine.getGamePaddle().setVelocityX(700)
             }
         }
     }
@@ -78,7 +78,7 @@ export class GameSceneInputComponent {
 
                 (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(0)
             } else {
-                (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(-400)
+                (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(-700)
             }
         }
         else if (this.gameStateMachine.getGamePaddle().active) {
@@ -86,7 +86,7 @@ export class GameSceneInputComponent {
 
                 this.gameStateMachine.getGamePaddle().setVelocityX(0)
             } else {
-                this.gameStateMachine.getGamePaddle().setVelocityX(-400)
+                this.gameStateMachine.getGamePaddle().setVelocityX(-700)
             }
 
         }
@@ -94,10 +94,10 @@ export class GameSceneInputComponent {
     protected onRightKeyPressDown(): void {
         if (this.gameStateMachine.getGameBallAndPaddleContainer().active) {
 
-            (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(400);
+            (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocityX(700);
         }
         else if (this.gameStateMachine.getGamePaddle().active) {
-            this.gameStateMachine.getGamePaddle().setVelocityX(400);
+            this.gameStateMachine.getGamePaddle().setVelocityX(700);
 
         }
     }
@@ -109,7 +109,8 @@ export class GameSceneInputComponent {
             this.gameStateMachine.getGameBallAndPaddleContainer().setActive(false);
             (this.gameStateMachine.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.enable = false;
             const velocityX = Phaser.Math.Between(-200, 200);
-            this.gameStateMachine.getGameBall().setVelocity(velocityX, 400);
+            this.gameStateMachine.getGameBall().setVelocity(velocityX, 700);
+            // this.gameStateMachine.getGameBall().setGravity(0,100);
             this.space.enabled = false;
 
         }
