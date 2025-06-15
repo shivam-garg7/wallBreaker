@@ -4,3 +4,7 @@ export interface IPhysicsBodyData {
     width?: number,
     height?: number
 }
+export interface IVelocity {
+    x: number,
+    y: number
+}

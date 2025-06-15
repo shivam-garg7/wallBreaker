@@ -11,3 +11,6 @@ export class LoadConstants {
 export class GameConstants {
     public static readonly TOTAL_NUMBER_LIFE: number = 3
 }
+export class GameLevels {
+    public static readonly TOTAL_NUMBER_OF_GAME_LEVEL = 7
+}

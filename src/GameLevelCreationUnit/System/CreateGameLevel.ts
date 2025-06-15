@@ -59,6 +59,9 @@ export class CreateGameLevel {
     public createBackground(scene: Scene,size:number[]): Phaser.GameObjects.Container  {
         return this.backGroundCreation.createBackGround(scene,size);
     }
+    public updateBackGround(scene: Scene,size:number[]): void  {
+        this.backGroundCreation.updateBackGround(scene,size);
+    }
     public startBorderLineCreation(scene: Scene): any {
         return this.borderLineCreation.createBorderLineCreation(scene);
     }

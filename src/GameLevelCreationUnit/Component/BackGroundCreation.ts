@@ -12,7 +12,7 @@ export class BackGroundCreation {
      */
     constructor() {
         this.gameStateMachine = GameStateManager.getInstance();
-        this.levelImages = [BackGroundImage.Level1, BackGroundImage.Level2, BackGroundImage.Level3, BackGroundImage.Level4, BackGroundImage.Level5, BackGroundImage.Level6, BackGroundImage.Level7, BackGroundImage.Level8]
+        this.levelImages = [BackGroundImage.Level1, BackGroundImage.Level2, BackGroundImage.Level3, BackGroundImage.Level4, BackGroundImage.Level5, BackGroundImage.Level6, BackGroundImage.Level7]
     }
     public static getInstance(): BackGroundCreation {
         if (!BackGroundCreation.backGroundCreation) {
@@ -20,16 +20,30 @@ export class BackGroundCreation {
         }
         return BackGroundCreation.backGroundCreation;
     }
-    public createBackGround(scene: Scene,size:number[]): Phaser.GameObjects.Container {
-        const con : Phaser.GameObjects.Container = scene.add.container(0,0);
+    public createBackGround(scene: Scene, size: number[]): Phaser.GameObjects.Container {
+        const con: Phaser.GameObjects.Container = scene.add.container(0, 0);
         for (const image of this.levelImages[this.gameStateMachine.currentGameLevel - 1].image) {
             const backGround = scene.add.sprite(0, 0, LevelCreationConstants.BACKGROUND_ATLAS_KEY, image);
-            backGround.setDisplaySize(size[0],size[1]).setPosition(backGround.displayWidth/2,backGround.displayHeight/2);
+            backGround.setDisplaySize(size[0], size[1]).setPosition(backGround.displayWidth / 2, backGround.displayHeight / 2);
             con.add(backGround);
         }
+        this.gameStateMachine.setBackgroundContainer(con);
         return con;
     }
     public removeBackGround(): void {
-        // to do
+        let list = this.gameStateMachine.getBackgroundContainer().length;
+        while (list > 0) {
+            this.gameStateMachine.getBackgroundContainer().getAt(0).destroy();
+            list--;
+        }
+        this.gameStateMachine.getBackgroundContainer().removeAll();
+    }
+    public updateBackGround(scene: Scene, size: number[]): void {
+        this.removeBackGround();
+        for (const image of this.levelImages[this.gameStateMachine.currentGameLevel - 1].image) {
+            const backGround = scene.add.sprite(0, 0, LevelCreationConstants.BACKGROUND_ATLAS_KEY, image);
+            backGround.setDisplaySize(size[0], size[1]).setPosition(backGround.displayWidth / 2, backGround.displayHeight / 2);
+            this.gameStateMachine.getBackgroundContainer().add(backGround);
+        }
     }
 }

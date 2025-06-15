@@ -11,9 +11,11 @@ export class GameStateManager {
     private _paddle!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     private _ball!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     private _paddleBallContainer!: Phaser.GameObjects.Container;
+    private _backGroundContainer!: Phaser.GameObjects.Container;
     private _bottomBorderLine!: Phaser.GameObjects.Line;
     private _physicsBodyXPosition: IPhysicsBodyData;
     private _tilesRecord: Record<string, ITileRecordConfig>;
+    private _tilesColliderRecord: Record<string, Phaser.Physics.Arcade.Collider>;
 
     /**
      *
@@ -24,6 +26,7 @@ export class GameStateManager {
         this._islevelComplete = false;
         this._currentGameLevel = 1
         this._tilesRecord = {};
+        this._tilesColliderRecord = {};
         this._physicsBodyXPosition = { x: undefined, y: undefined, width: undefined, height: undefined };
     }
     public static getInstance(): GameStateManager {
@@ -66,12 +69,23 @@ export class GameStateManager {
     public getTileRecord(): Record<string, ITileRecordConfig> {
         return this._tilesRecord;
     }
+    public getTileColliderRecord(key:string): Phaser.Physics.Arcade.Collider {
+        return this._tilesColliderRecord[key];
+    }
     public updateTileRecord(key: string, data: ITileRecordConfig): void {
         this._tilesRecord[key] = data;
     }
     public removeTileRecord(key: string): void {
         if (key in this._tilesRecord) {
             delete this._tilesRecord[key];
+        }
+    }
+    public updateTileColliderRecord(key: string, data: Phaser.Physics.Arcade.Collider): void {
+        this._tilesColliderRecord[key] = data;
+    }
+    public removeTileColliderRecord(key: string): void {
+        if (key in this._tilesColliderRecord) {
+            delete this._tilesColliderRecord[key];
         }
     }
     public setCreatedPaddle(value: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody): void {
@@ -92,6 +106,12 @@ export class GameStateManager {
     public getGameBallAndPaddleContainer(): Phaser.GameObjects.Container {
         return this._paddleBallContainer;
     }
+    public setBackgroundContainer(value: Phaser.GameObjects.Container): void {
+        this._backGroundContainer = value;
+    }
+    public getBackgroundContainer(): Phaser.GameObjects.Container {
+        return this._backGroundContainer;
+    }
     public setCreatedBottomBorderLine(value: Phaser.GameObjects.Line): void {
         this._bottomBorderLine = value;
     }
@@ -103,5 +123,18 @@ export class GameStateManager {
     }
     public getGamePhysicsBodyData(): IPhysicsBodyData {
         return this._physicsBodyXPosition;
+    }
+    public removeBallFromContainer(): void {
+        this._ball.body.enable = true;
+        this._paddle.body.enable = true;
+        this._paddleBallContainer.remove(this._ball);
+        this._ball.x = this._paddleBallContainer.x;
+        this._ball.y = this._paddleBallContainer.y;
+    }
+    public addBallFromContainer(): void {
+        this._ball.body.enable = false;
+        this._paddle.body.enable = false;
+        this._paddleBallContainer.add(this._ball);
+        this._ball.setPosition(0, 0);
     }
 }

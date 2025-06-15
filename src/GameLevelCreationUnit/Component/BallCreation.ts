@@ -31,6 +31,7 @@ export class BallCreation {
         ball.setCollideWorldBounds(true, 1, 1);
         ball.setBounce(1, 1);
         ball.setCircle(66.5);
+        ball.body.setEnable(false);
     }
     private getBallFrameKey(key: number): string {
         return BallAssetsData.ballFramesKey[key];

@@ -7,6 +7,7 @@ import { ITileRecordConfig } from "Interface/ITileRecordConfig";
 export class PhysicsCollisionOnObjects {
     protected static physicsCollisionOnObjects: PhysicsCollisionOnObjects;
     protected gameStateMachine: GameStateManager;
+    private readonly diffMultiplier: number = 5;
     private readonly createLevelUnit: CreateGameLevel;
     public static getInstance(): PhysicsCollisionOnObjects {
         if (!PhysicsCollisionOnObjects.physicsCollisionOnObjects) {
@@ -23,7 +24,11 @@ export class PhysicsCollisionOnObjects {
     }
     public onBallPaddleCollision(ball: Phaser.Types.Physics.Arcade.ImageWithDynamicBody, paddle: Phaser.Types.Physics.Arcade.ImageWithDynamicBody, scene: Scene): void {
         scene.physics.add.collider(ball,
-            paddle
+            paddle, (ball) => {
+                const x = this.gameStateMachine.getGameBallAndPaddleContainer().x;
+                const diff = (ball as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).x - x;
+                (ball as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).body.setVelocityX(diff * this.diffMultiplier);
+            }
         );
 
 
@@ -34,16 +39,18 @@ export class PhysicsCollisionOnObjects {
     public addBrickCollisionWithBall(scene: Scene, tilesArray: Record<string, ITileRecordConfig>, ball: Phaser.Types.Physics.Arcade.ImageWithDynamicBody): void {
         for (const tile of Object.values(tilesArray)) {
 
-            scene.physics.add.collider(ball,
+            let collider = scene.physics.add.collider(ball,
                 tile.tileValue,
                 (ball, tile) => {
 
                     this.BrokenBricks(tile, scene);
                     this.handleBrickCollision(ball, tile, scene);
+                    this.gameStateMachine.removeTileColliderRecord((tile as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).name);
+                    collider.destroy();
                 },
                 undefined,
                 this);
-
+            this.gameStateMachine.updateTileColliderRecord(tile.tileValue.name, collider)
         }
     }
     private handleBrickCollision(ball: Phaser.Types.Physics.Arcade.GameObjectWithBody | Phaser.Physics.Arcade.Body | Phaser.Physics.Arcade.StaticBody | Phaser.Tilemaps.Tile, brick: Phaser.Types.Physics.Arcade.GameObjectWithBody | Phaser.Physics.Arcade.Body | Phaser.Physics.Arcade.StaticBody | Phaser.Tilemaps.Tile, scene: Scene, tilesArray?: Phaser.Types.Physics.Arcade.ImageWithDynamicBody[]) {

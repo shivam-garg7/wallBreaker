@@ -30,6 +30,7 @@ export class PaddleCreation {
         paddle.setOrigin(0.5, 0).setScale(0.25);
         paddle.setImmovable(true);
         paddle.setCollideWorldBounds(true);
+        paddle.body.enable = false;
     }
     private getPaddleFrameKey(key: number): string {
         return PaddleAssetsData.paddleFramesKey[key];

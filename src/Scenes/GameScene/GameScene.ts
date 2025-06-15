@@ -1,11 +1,12 @@
 
-import { SceneName } from "../../GameConstants/SceneConstants";
+import { GameLevels, SceneName } from "../../GameConstants/SceneConstants";
 import { GameStateManager } from "../../StateManger/GameStateManager";
 import { CreateGameLevel } from "../../GameLevelCreationUnit/System/CreateGameLevel";
 import { CollisionStateManager } from "../../CollisionHandlingUnit/System/CollisionStateManager";
-import { GameSceneInputComponent } from "./Component/GameSceneInputComponent";
 import { ExtendedScene } from "../../utility/ExtendedScene";
 import { MsgGameSceneComponent } from "./Component/MsgGameSceneComponent";
+import { originalHeight, originalWidth } from "../../main";
+import { InputHandlingComponent } from "./Component/InputHandlingComponent";
 
 
 export class GameScene extends ExtendedScene {
@@ -14,7 +15,7 @@ export class GameScene extends ExtendedScene {
     private readonly gameStateManager!: GameStateManager;
     private readonly createGameLevel!: CreateGameLevel;
     private readonly collisionStateManager!: CollisionStateManager;
-    private gameInputComponent!: GameSceneInputComponent;
+    private inputHandlingComponent!: InputHandlingComponent;
 
     /**
      *
@@ -24,7 +25,6 @@ export class GameScene extends ExtendedScene {
         this.gameStateManager = GameStateManager.getInstance();
         this.createGameLevel = CreateGameLevel.getInstance();
         this.collisionStateManager = CollisionStateManager.getInstance();
-        // this.intializePlayerMsg();
 
     }
     init(): void {
@@ -32,12 +32,11 @@ export class GameScene extends ExtendedScene {
     create(): void {
         this.createInitalGameSetup();
         this.physicsCollisionHandling();
-        this.intializeInputHandling();
-        // this.playermsg.showHideGameStartPlayerMsg(true);
-
+        this.inputHandling();
+        this.gameStateManager.isGameOver = false;
     }
     protected createInitalGameSetup(): void {
-        this.createGameLevel.createBackground(this, [1920, 1080]);
+        this.createGameLevel.createBackground(this, [originalWidth, originalHeight]);
         this.createGameLevel.startLevelCreation(this);
         this.createGameLevel.startPaddleCreation(this);
         this.createGameLevel.startBallCreation(this);
@@ -52,63 +51,63 @@ export class GameScene extends ExtendedScene {
         this.collisionStateManager.onBallPaddleCollision((this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody), (this.gameStateManager.getGamePaddle() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody), this);
         this.collisionStateManager.onBallSceneOut((this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody), (this.gameStateManager.getGameBottomBorderLine() as Phaser.GameObjects.Line), this);
     }
-    protected intializeInputHandling(): void {
-        this.gameInputComponent = new GameSceneInputComponent(this, this.createGameLevel, this.collisionStateManager);
-    }
-    protected intializePlayerMsg(): void {
-        this.playermsg = new MsgGameSceneComponent(this);
+    protected inputHandling(): void {
+        this.inputHandlingComponent = new InputHandlingComponent(this);
     }
     public clearCurrentWall(): void {
         Object.entries(this.gameStateManager.getTileRecord()).forEach(([key, value]) => {
             const tileRecord = value.tileValue;
             this.physics.world.remove(tileRecord.body);
             this.gameStateManager.removeTileRecord(key);
+            this.gameStateManager.getTileColliderRecord(key).destroy();
+            this.gameStateManager.removeTileColliderRecord(key);
             tileRecord.destroy(true);
         });
     }
     public onLevelComplete(): void {
-        this.gameInputComponent.disableEnableLeftKey(false);
-        this.gameInputComponent.disableEnableRightKey(false);
-        this.gameStateManager.islevelComplete = true;
-        (this.gameStateManager.getGameBallAndPaddleContainer()).setActive(true);
-        (this.gameStateManager.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.enable = true;
-        this.gameStateManager.getGamePaddle().setVelocity(0);
         this.gameStateManager.updateLevel();
-        this.createGameLevel.startLevelCreation(this);
-        this.collisionStateManager.onBrickAndBallCollision(this, this.gameStateManager.getTileRecord(), (this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody));
-        this.gameStateManager.reset();
-        this.resetToPlay();
-        this.gameInputComponent.disableEnableLeftKey(true);
-        this.gameInputComponent.disableEnableRightKey(true);
-        // this.playermsg.showLevelPlayerMsg();
-    }
-    public lifeLineLost(): void {
-        (this.gameStateManager.getGameBallAndPaddleContainer()).setActive(true);
-        (this.gameStateManager.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.enable = true;
-        this.gameStateManager.getGamePaddle().setVelocity(0);
-        if (this.gameStateManager.lifeLines) {
-            this.resetToPlay();
-        } else {
-            this.onGameOver();
+        if (this.gameStateManager.currentGameLevel == GameLevels.TOTAL_NUMBER_OF_GAME_LEVEL + 1) {
+            this.allLevelComplete();
+            return;
         }
+        this.updateBackground();
+        this.onGameOver();
+        this.inputHandlingComponent.onRestartKeyPressUp();
+    }
+    protected updateBackground(): void {
+       
+        this.createGameLevel.updateBackGround(this, [originalWidth, originalHeight]);
 
     }
+    public lifeLineLost(): void {
+        this.gameStateManager.lifeLoose();
+        if (this.gameStateManager.lifeLines == 0) {
+            this.onGameOver();
+
+        } else {
+            this.resetToPlay();
+        }
+    }
     public resetToPlay(): void {
-        (this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).disableBody(true);
-        (this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).setVelocity(0, 0);
-        (this.gameStateManager.getGamePaddle() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).setPosition(0, 0);
-        (this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).setPosition(0, 0);
-        this.gameStateManager.getGameBallAndPaddleContainer().setPosition(this.renderer.width / 2, this.renderer.height - ((this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).height * 0.25 + (this.gameStateManager.getGamePaddle() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody).height * 0.25) / 2);
-        this.gameInputComponent.disableEnableSpaceBar(true);
+        this.gameStateManager.addBallFromContainer();
+        this.alignBallAndPaddleContainer();
+        this.inputHandlingComponent.disableEnableSpaceBar(true);
     }
     protected onGameOver(): void {
         this.gameStateManager.isGameOver = true;
-        // this.playermsg.showHidegameOverMsg(true);
-        this.gameInputComponent.disableEnableLeftKey(false);
-        this.gameInputComponent.disableEnableRightKey(false);
-        this.gameInputComponent.disableEnableSpaceBar(false);
-        this.gameInputComponent.disableEnableRestartKey(true);
+        this.gameStateManager.getGameBall().visible = false;
+        this.gameStateManager.getGameBall().body.enable = false;
+        (this.gameStateManager.getGameBallAndPaddleContainer() as Phaser.Types.Physics.Arcade.GameObjectWithDynamicBody).body.setVelocity(0, 0);
+        this.inputHandlingComponent.disableEnableRestartKey(true);
     }
-
-
+    protected alignBallAndPaddleContainer(): void {
+        this.gameStateManager.getGameBallAndPaddleContainer().setX(this.renderer.width / 2);
+    }
+    public wallCreationAndCollision(): void {
+        this.createGameLevel.startLevelCreation(this);
+        this.collisionStateManager.onBrickAndBallCollision(this, this.gameStateManager.getTileRecord(), (this.gameStateManager.getGameBall() as Phaser.Types.Physics.Arcade.ImageWithDynamicBody));
+    }
+    protected allLevelComplete(): void {
+        // to do.
+    }
 }
