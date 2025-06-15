@@ -24,6 +24,13 @@
                 "key": "backGround",
                 "textureURL": "assets/backGround/backGround.png",
                 "atlasURL": "assets/backGround/backGround.json"
+            },
+            {
+                "type": "bitmapFont",
+                "key": "arcadeFont",
+                "textureURL": "assets/fonts/arcade.png",
+                "fontDataURL": "assets/fonts/arcade.xml",
+                "normalMap": ""
             }
         ]
     },

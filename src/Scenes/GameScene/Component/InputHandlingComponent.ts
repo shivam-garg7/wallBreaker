@@ -81,7 +81,7 @@ export class InputHandlingComponent {
         }
     }
     private onSpaceBarPressUp(): void {
-
+        this.scene.showPlayerMsg(false);
         this.disableEnableSpaceBar(false);
         const velocityX = Phaser.Math.Between(-this.velocity.x, this.velocity.x);
         this.gameStateMachine.getGameBall().body.setVelocity(velocityX, -this.velocity.y);
@@ -89,6 +89,7 @@ export class InputHandlingComponent {
 
     }
     public onRestartKeyPressUp(): void {
+        this.scene.showPlayerMsg(false);
         this.disableEnableRestartKey(false);
         this.gameStateMachine.reset();
         this.scene.clearCurrentWall();

@@ -33,6 +33,7 @@ export class GameScene extends ExtendedScene {
         this.createInitalGameSetup();
         this.physicsCollisionHandling();
         this.inputHandling();
+        this.initializePlayerMsg();
         this.gameStateManager.isGameOver = false;
     }
     protected createInitalGameSetup(): void {
@@ -54,6 +55,9 @@ export class GameScene extends ExtendedScene {
     protected inputHandling(): void {
         this.inputHandlingComponent = new InputHandlingComponent(this);
     }
+    protected initializePlayerMsg(): void {
+        this.playermsg = new MsgGameSceneComponent(this);
+    }
     public clearCurrentWall(): void {
         Object.entries(this.gameStateManager.getTileRecord()).forEach(([key, value]) => {
             const tileRecord = value.tileValue;
@@ -65,17 +69,29 @@ export class GameScene extends ExtendedScene {
         });
     }
     public onLevelComplete(): void {
-        this.gameStateManager.updateLevel();
-        if (this.gameStateManager.currentGameLevel == GameLevels.TOTAL_NUMBER_OF_GAME_LEVEL + 1) {
-            this.allLevelComplete();
-            return;
-        }
-        this.updateBackground();
-        this.onGameOver();
-        this.inputHandlingComponent.onRestartKeyPressUp();
+        this.showPlayerMsg(true);
+        this.playermsg.updatePlayerMsg("HURRY LEVEL COMPLETE !!!");
+        const timer = this.time.delayedCall(2000,
+            () => {
+                this.showPlayerMsg(false);
+                timer.remove(true);
+                timer.destroy();
+                this.gameStateManager.updateLevel();
+                if (this.gameStateManager.currentGameLevel == GameLevels.TOTAL_NUMBER_OF_GAME_LEVEL + 1) {
+                    this.allLevelComplete();
+                    return;
+                }
+                this.updateBackground();
+                this.onGameOver();
+                this.inputHandlingComponent.onRestartKeyPressUp();
+
+            },
+            undefined,
+            this
+        );
     }
     protected updateBackground(): void {
-       
+
         this.createGameLevel.updateBackGround(this, [originalWidth, originalHeight]);
 
     }
@@ -94,6 +110,8 @@ export class GameScene extends ExtendedScene {
         this.inputHandlingComponent.disableEnableSpaceBar(true);
     }
     protected onGameOver(): void {
+        this.showPlayerMsg(true);
+        this.playermsg.updatePlayerMsg("GAME OVER PRESS R TO RESTART");
         this.gameStateManager.isGameOver = true;
         this.gameStateManager.getGameBall().visible = false;
         this.gameStateManager.getGameBall().body.enable = false;
@@ -109,5 +127,8 @@ export class GameScene extends ExtendedScene {
     }
     protected allLevelComplete(): void {
         // to do.
+    }
+    public showPlayerMsg(val: boolean): void {
+        this.playermsg.ShowPlayerMsg(val);
     }
 }
